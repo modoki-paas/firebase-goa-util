@@ -59,7 +59,7 @@ func NewJWTMiddleware(aud, iss string, getPemCert GetPemCert) *jwtmiddleware.JWT
 
 			cert, err := getPemCert(token)
 			if err != nil {
-				panic(err.Error())
+				return nil, err
 			}
 
 			result, _ := jwtgo.ParseRSAPublicKeyFromPEM([]byte(cert))
